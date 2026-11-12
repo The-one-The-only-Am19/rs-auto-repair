@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R&amp;S General Auto Repair</title>
+<meta name="description" content="R&S General Auto Repair and Tire Shop LLC, 20 School St, Norwalk, CT. Tires, brakes, chassis, suspension and diagnostics for all makes and models. Free estimates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#8c1c24; --maroon-dark:#721419;
+  --red:#e3262f; --red-dark:#c41d26;
+  --ink:#111827; --text:#1f2937; --muted:#4b5563; --soft:#6b7280;
+  --bg:#f8f9fb; --card:#ffffff; --line:#e5e7eb;
+  --tile:#fbeaec;
+  --navy:#121826; --navy-2:#1a2131; --navy-line:#2a3242; --navy-muted:#9aa3b2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+svg{flex:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+h1,h2,h3{color:var(--ink);font-weight:600;letter-spacing:-.035em;line-height:1.08}
+h1{font-size:clamp(2.6rem,6vw,4.4rem)}
+h2{font-size:clamp(2.1rem,4.5vw,3.3rem)}
+h3{font-size:1.65rem;letter-spacing:-.03em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--maroon);font-weight:600;font-size:1.05rem;margin-bottom:14px}
+.eyebrow.dot::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.lead{font-size:1.2rem;color:var(--muted);max-width:780px;margin-top:18px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 1.05rem/1 Inter,sans-serif;padding:15px 24px;border-radius:7px;border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s,color .15s;white-space:nowrap}
+.btn svg{width:20px;height:20px}
+.btn-primary{background:var(--maroon);color:#fff}
+.btn-primary:hover{background:var(--maroon-dark)}
+.btn-outline{background:#fff;border-color:var(--line);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.btn-outline:hover{border-color:#cfd3da}
+.btn-outline svg{color:var(--maroon)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark)}
+.btn-dark{background:transparent;border-color:var(--navy-line);color:#fff}
+.btn-dark:hover{border-color:#4a5468}
+.btns{display:flex;gap:16px;flex-wrap:wrap}
+
+/* Header */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:92px;gap:16px}
+.logo img{height:72px;width:auto}
+.head-actions{display:flex;align-items:center;gap:14px}
+.icon-btn{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.icon-btn svg{width:24px;height:24px}
+
+/* Drawer */
+.scrim{position:fixed;inset:0;background:rgba(17,24,39,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(360px,88vw);background:#fff;z-index:60;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;padding:28px 24px;box-shadow:-10px 0 30px rgba(0,0,0,.12)}
+body.menu-open .scrim{opacity:1;pointer-events:auto}
+body.menu-open .drawer{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.drawer-head strong{font-size:1.3rem;font-weight:600;color:var(--ink)}
+.drawer nav a{display:block;padding:22px 10px;font-size:1.3rem;font-weight:500;color:var(--ink);border-bottom:1px solid var(--line);border-radius:6px}
+.drawer nav a:hover{background:#f5f6f8;color:var(--maroon)}
+.drawer .foot{margin-top:auto;display:grid;gap:12px;padding-top:20px;border-top:1px solid var(--line)}
+.drawer .foot .btn{width:100%}
+
+/* Hero */
+.hero{padding:88px 0 0}
+.hero .btns{margin-top:36px}
+.rule{height:1px;background:var(--line);margin:52px 0 34px}
+.info-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.info-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 22px;display:flex;gap:18px;align-items:flex-start;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.tile{width:52px;height:52px;border-radius:9px;background:var(--tile);color:var(--maroon);display:grid;place-items:center;flex:none}
+.tile svg{width:24px;height:24px}
+.info-card small{display:block;color:var(--muted);font-weight:500;font-size:.95rem}
+.info-card strong{display:block;color:var(--ink);font-weight:500;font-size:1.2rem;margin:2px 0}
+.info-card span{color:var(--soft);font-size:.95rem}
+.hero-photo{margin-top:80px;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:2/1;background:#ddd}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+
+/* Services list */
+section{padding:110px 0}
+.svc-list{margin-top:48px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.svc{display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:center;padding:30px 32px;border-top:1px solid var(--line);transition:background .15s}
+.svc:first-child{border-top:0}
+.svc:hover{background:#f6f7f9}
+.svc:hover h3{color:var(--maroon)}
+.svc .thumb{width:206px;height:128px;border-radius:9px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.svc .thumb img{width:100%;height:100%;object-fit:cover}
+.svc .tile{width:56px;height:56px}
+.svc h3{transition:color .15s}
+.svc p{color:var(--muted);font-size:1.12rem;margin-top:8px;max-width:780px}
+.svc .price{display:inline-block;margin-top:10px;font-size:.92rem;font-weight:600;color:var(--maroon)}
+.svc .num{font-family:"JetBrains Mono",ui-monospace,monospace;color:#9ca3af;font-size:1.05rem;align-self:center}
+.cta-row{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;margin-top:64px;padding-top:52px;border-top:1px solid var(--line)}
+.cta-row .eyebrow{margin-bottom:6px}
+.cta-row p{font-size:1.5rem;font-weight:600;letter-spacing:-.03em;color:var(--ink);line-height:1.3;max-width:540px}
+
+/* Dark sections */
+.dark{background:var(--navy);color:#e5e7eb}
+.dark h2,.dark h3{color:#fff}
+.dark .eyebrow{color:var(--red)}
+.dark .lead{color:var(--navy-muted)}
+.panel{border:1px solid var(--navy-line);border-radius:14px;overflow:hidden;background:var(--navy-2);margin-top:48px}
+.panel .media{aspect-ratio:3.5/1;overflow:hidden}
+.panel .media img{width:100%;height:100%;object-fit:cover}
+.panel .body{padding:56px 42px 0}
+.panel.split{display:grid;grid-template-columns:400px 1fr}
+.panel.split .media{aspect-ratio:auto;min-height:100%}
+.panel.split .body{padding:48px 40px 0;display:flex;flex-direction:column;justify-content:space-between}
+.panel.split .feature{grid-template-columns:auto 1fr}
+.panel.split .note{grid-column:2;margin-top:24px;max-width:none}
+
+/* Before / after slider */
+.ba-wrap{display:grid;grid-template-columns:minmax(0,520px) 1fr;gap:56px;align-items:center;margin-top:64px}
+.ba{position:relative;aspect-ratio:350/363;border-radius:14px;overflow:hidden;user-select:none;touch-action:pan-y;cursor:ew-resize;border:1px solid var(--navy-line)}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba .before{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+.ba .divider{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.ba .handle{position:absolute;top:50%;left:var(--pos,50%);width:46px;height:46px;border-radius:50%;background:#fff;border:3px solid var(--maroon);transform:translate(-50%,-50%);display:grid;place-items:center;color:var(--maroon);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.ba .handle svg{width:22px;height:22px}
+.ba .lbl{position:absolute;top:14px;padding:5px 12px;border-radius:6px;font-weight:600;font-size:.9rem;color:#fff}
+.ba .lbl.b{left:14px;background:rgba(17,24,39,.85)}
+.ba .lbl.a{right:14px;background:var(--maroon)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba.tall{aspect-ratio:3/5;width:100%;max-width:380px;justify-self:center}
+.ba-wrap.rev{grid-template-columns:1fr minmax(0,380px);margin-top:88px}
+.ba-text h3{font-size:clamp(1.8rem,3.4vw,2.5rem)}
+.ba-text p{color:var(--navy-muted);font-size:1.15rem;margin-top:16px}
+.ba-text ul{list-style:none;margin-top:24px;display:grid;gap:12px}
+.ba-text li{display:flex;gap:12px;align-items:center;color:#e5e7eb;font-size:1.05rem}
+.ba-text li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);flex:none}
+
+/* Mosaic */
+.mosaic-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-top:96px;padding-top:56px;border-top:1px solid var(--navy-line)}
+.mosaic-head h3{font-size:1.9rem}
+.mosaic-head p{color:var(--navy-muted)}
+.mosaic{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;margin-top:32px}
+.m-tile{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;border:1px solid var(--navy-line);background:var(--navy-2)}
+.m-tile img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.m-tile:hover img{transform:scale(1.05)}
+.m-tile span{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;background:linear-gradient(transparent,rgba(10,13,20,.88));color:#fff;font-size:.88rem;font-weight:500;line-height:1.3}
+.shop-photo{border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:681/495}
+.shop-photo img{width:100%;height:100%;object-fit:cover}
+.feature{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:start}
+.tile-dark{width:56px;height:56px;border-radius:9px;background:rgba(227,38,47,.12);border:1px solid rgba(227,38,47,.18);color:var(--red);display:grid;place-items:center}
+.tile-dark svg{width:24px;height:24px}
+.feature .sub{color:var(--red);font-weight:500;font-size:1.1rem;margin-top:6px}
+.feature p{color:var(--navy-muted);font-size:1.15rem;margin-top:16px;max-width:560px;line-height:1.7}
+.note{border:1px solid var(--navy-line);border-radius:10px;padding:20px 22px;display:flex;gap:14px;align-items:center;max-width:300px;color:#e5e7eb;font-weight:500;font-size:1.05rem;line-height:1.45}
+.note svg{color:var(--red);width:24px;height:24px}
+.estimate{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:44px;padding:40px 0 44px;border-top:1px solid var(--navy-line)}
+.estimate strong{display:block;color:#fff;font-size:1.65rem;font-weight:600;letter-spacing:-.03em}
+.estimate span{display:flex;align-items:center;gap:10px;color:var(--navy-muted);font-size:1.1rem;margin-top:6px}
+.estimate span svg{width:20px;height:20px;color:var(--red)}
+.photo{position:relative;border-radius:14px;overflow:hidden;margin-top:44px}
+.photo img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:18px;left:18px;background:rgba(17,24,39,.82);color:#fff;font-size:.95rem;font-weight:500;padding:6px 14px;border-radius:7px}
+.tag.light{background:rgba(255,255,255,.92);color:var(--ink);top:auto;bottom:16px;left:16px}
+.tire-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:44px 40px;margin-top:64px}
+.tire-grid .feature{grid-template-columns:auto 1fr}
+.tire-grid p{font-size:1.08rem}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:64px;align-items:start}
+.g-card{background:var(--navy-2);border:1px solid var(--navy-line);border-radius:14px;overflow:hidden}
+.g-card .img{position:relative;aspect-ratio:4/5;overflow:hidden}
+.g-card .img.wide{aspect-ratio:4/3}
+.g-card .img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.g-card:hover .img img{transform:scale(1.03)}
+.g-card .img::after{content:"";position:absolute;inset:auto 0 0;height:40%;background:linear-gradient(transparent,rgba(10,13,20,.8))}
+.g-meta{position:absolute;left:22px;right:22px;bottom:18px;z-index:1;display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:500;font-size:1.1rem}
+.g-meta b{display:flex;align-items:center;gap:10px;font-weight:500}
+.g-meta b svg{width:20px;height:20px;color:var(--red)}
+.g-meta span{color:#c4cad4;font-size:1rem}
+.g-cap{padding:26px 28px;display:flex;gap:16px;align-items:flex-start;color:#fff;font-size:1.15rem;font-weight:500;line-height:1.45}
+.g-cap::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--red);margin-top:9px;flex:none}
+
+/* Contact */
+.contact-card{margin-top:52px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:52px}
+.contact-photo{position:relative;max-width:580px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.contact-body{margin-top:44px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.contact-body .eyebrow svg{width:20px;height:20px}
+.contact-body p{color:var(--muted);font-size:1.12rem;margin:16px 0 30px}
+.contact-list{display:grid;gap:16px}
+.contact-list .info-card{padding:18px}
+.hours{width:100%;border-collapse:collapse;margin-top:4px}
+.hours td{padding:2px 0;font-size:1rem;color:var(--ink)}
+.hours td:last-child{text-align:right;font-weight:500}
+.map{margin-top:32px;border-radius:12px;overflow:hidden;border:1px solid var(--line);height:320px}
+.map iframe{width:100%;height:100%;border:0}
+
+footer{background:var(--navy);color:var(--navy-muted);padding:64px 0 36px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+footer .logo-box{background:#fff;border-radius:10px;padding:10px 14px;display:inline-block}
+footer .logo-box img{height:56px}
+footer h4{color:#fff;font-weight:600;margin-bottom:14px;font-size:1.05rem}
+footer li{list-style:none;margin:8px 0}
+footer a:hover{color:#fff}
+.connect{border-top:1px solid var(--navy-line);margin-top:48px;padding-top:28px}
+.connect h4{color:#c4cad4;font-size:1rem;margin-bottom:16px}
+.socials{display:flex;gap:16px}
+.socials a{width:58px;height:58px;border-radius:12px;border:1px solid var(--navy-line);background:var(--navy-2);color:#fff;display:grid;place-items:center;transition:border-color .15s,background .15s}
+.socials a:hover{border-color:var(--red);background:#222a3b}
+.socials svg{width:28px;height:28px}
+.legal{border-top:1px solid var(--navy-line);margin-top:40px;padding-top:24px;font-size:.9rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .wrap{padding:0 20px}
+  .head-actions .btn-outline,.head-actions .btn-primary span{display:none}
+  .head-actions .btn-primary{padding:13px 16px}
+  .logo img{height:56px}
+  header .wrap{height:78px}
+  .info-cards,.gallery,.tire-grid,.contact-body,.foot-grid{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr auto;gap:18px;padding:24px 20px}
+  .svc .thumb,.svc .tile{grid-column:1/-1}
+  .svc .thumb{width:100%;height:180px}
+  .feature{grid-template-columns:auto 1fr}
+  .note{grid-column:1/-1;max-width:none}
+  .panel .body,.panel.split .body{padding:36px 22px 0}
+  .panel .media{aspect-ratio:2/1}
+  .panel.split{grid-template-columns:1fr}
+  .panel.split .media{aspect-ratio:4/3}
+  .panel.split .media img{object-position:50% 70%}
+  .panel.split .note{grid-column:1/-1}
+  .ba-wrap,.ba-wrap.rev{grid-template-columns:1fr;gap:32px}
+  .ba-wrap.rev .ba{order:-1}
+  .mosaic{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+  .contact-card{padding:24px}
+  section{padding:80px 0}
+  .hero{padding-top:60px}
+  .hero-photo{margin-top:48px;aspect-ratio:4/3}
+}
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  .btns .btn,.estimate .btn,.cta-row .btn{width:100%}
+  .info-card strong{font-size:1.05rem}
+  .g-card .img{aspect-ratio:1/1}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="R&S General Auto Repair and Tire Shop, home"><img src="images/logo.png" alt="R&S General Auto Repair Tire Shop logo"></a>
+    <div class="head-actions">
+      <a class="btn btn-primary js-book" href="#"><span>Book Online</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn btn-outline" href="tel:+12036423856">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        Call (203) 642-3856</a>
+      <button class="icon-btn" id="openMenu" aria-label="Open navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" aria-label="Navigation">
+  <div class="drawer-head"><strong>Navigation</strong>
+    <button class="icon-btn" id="closeMenu" aria-label="Close navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#tires">Tire Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="foot">
+    <a class="btn btn-primary js-book" href="#">Book Online <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a class="btn btn-outline" href="tel:+12036423856"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call (203) 642-3856</a>
+  </div>
+</aside>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow dot">Norwalk, CT Workshop</span>
+    <h1>General auto repair &amp; tire shop you can trust.</h1>
+    <p class="lead">From tires and brakes to chassis rebuilding and diagnostics, our Norwalk team delivers honest, guaranteed workmanship on all makes and models.</p>
+    <div class="btns">
+      <a class="btn btn-primary js-book" href="#">Book Online</a>
+      <a class="btn btn-outline" href="tel:+12036423856"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call (203) 642-3856</a>
+    </div>
+    <div class="rule"></div>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><small>Shop Hours</small><strong>Mon–Fri 8:00 AM–5:00 PM</strong><span>Sat 8:00 AM–3:00 PM · Sun Closed</span></div>
+      </div>
+      <div class="info-card">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        <div><small>Norwalk Location</small><strong>20 School St, Norwalk, CT 06851</strong><span>Free parking &amp; easy bay access</span></div>
+      </div>
+    </div>
+    <div class="hero-photo"><img src="images/crew.jpg" alt="R&S mechanics working underneath a truck in Norwalk"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <span class="eyebrow dot">Our Services</span>
+    <h2>Mechanical repair, done right</h2>
+    <p class="lead">Precision repair for cars, SUVs and trucks, backed by free estimates and a one-year warranty on parts and labor.</p>
+
+    <div class="svc-list">
+      <div class="svc">
+        <div class="thumb"><img src="images/tire-balancing.jpg" alt="Technician balancing a tire and wheel" style="object-position:50% 72%"></div>
+        <div><h3>Tire service</h3><p>New and used tires, mounting, balancing and flat repair for all makes and models.</p><span class="price">From $100 · Flat repair from $45</span></div>
+        <span class="num">01</span>
+      </div>
+      <div class="svc">
+        <div class="thumb"><img src="images/brake-hub.jpg" alt="Truck wheel hub and brakes being serviced" style="object-position:50% 60%"></div>
+        <div><h3>Brake repair and replacement</h3><p>Precision pad replacement, rotor resurfacing, caliper servicing, and brake fluid flushes.</p><span class="price">From $350</span></div>
+        <span class="num">02</span>
+      </div>
+      <div class="svc">
+        <div class="thumb"><img src="images/crew.jpg" alt="Team rebuilding a truck chassis"></div>
+        <div><h3>Chassis repair (chassis rebuilding)</h3><p>Structural chassis realignment, subframe restoration, and heavy-duty suspension welding.</p></div>
+        <span class="num">03</span>
+      </div>
+      <div class="svc">
+        <div class="thumb"><img src="images/engine-swap.jpg" alt="Mechanic lifting an engine out of a Honda Civic" style="object-position:50% 40%"></div>
+        <div><h3>Engine repair and rebuilds</h3><p>Engine swaps, crankshaft and bearing work, timing gears and complete rebuilds on gas and diesel engines.</p></div>
+        <span class="num">04</span>
+      </div>
+      <div class="svc">
+        <div class="thumb"><img src="images/blue-f150.jpg" alt="Blue Ford F-150 after repair" style="object-position:50% 55%"></div>
+        <div><h3>Wheel bearings</h3><p>Hub assembly replacement, bearing repacking, and wheel rotation noise diagnosis.</p></div>
+        <span class="num">05</span>
+      </div>
+      <div class="svc">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
+        <div><h3>Sway-bar links and bushings</h3><p>Stabilizer link replacements and heavy polyurethane bushing installation to restore handling.</p></div>
+        <span class="num">06</span>
+      </div>
+      <div class="svc">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s-6 6.4-6 10.8a6 6 0 0 0 12 0c0-4.4-6-10.8-6-10.8z"/></svg></div>
+        <div><h3>Inner seals</h3><p>Transmission, crankshaft, and axle seal replacements to prevent fluid contamination.</p></div>
+        <span class="num">07</span>
+      </div>
+      <div class="svc">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6M12 15v6M3 12h6M15 12h6"/></svg></div>
+        <div><h3>Wheel alignment</h3><p>Precise alignment to stop pulling, extend tire life and keep your steering straight.</p><span class="price">From $130</span></div>
+        <span class="num">08</span>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <div><span class="eyebrow">All makes and models • Free estimates</span>
+        <p>Reliable diagnostics and mechanical repair with guaranteed workmanship</p></div>
+      <div class="btns">
+        <a class="btn btn-primary js-book" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Book Online</a>
+        <a class="btn btn-outline" href="tel:+12036423856"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call (203) 642-3856</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIRES (dark) -->
+<section id="tires" class="dark">
+  <div class="wrap">
+    <span class="eyebrow dot">Tire Maintenance &amp; Replacements</span>
+    <h2>Tire services</h2>
+    <p class="lead">Sales, installation, rotation and pressure checks to keep you safe in every season.</p>
+
+    <div class="panel split">
+      <div class="media"><img src="images/tire-balancing.jpg" alt="R&S technician balancing a wheel on a digital tire balancer"></div>
+      <div class="body">
+        <div class="feature">
+          <div class="tile-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 18a9 9 0 1 1 16 0"/><path d="m12 13 4-4"/></svg></div>
+          <div>
+            <h3>Tire pressure checks</h3>
+            <div class="sub">Digital Gauge Verification &amp; Valve Inspection</div>
+            <p>Accurate digital tire pressure verification and valve stem inspection to maximize fuel economy, prevent uneven wear, and protect road safety.</p>
+          </div>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 18a9 9 0 1 1 16 0"/><path d="m12 13 4-4"/></svg>Recommended with every seasonal oil change or travel check</div>
+        </div>
+        <div class="estimate">
+          <div><strong>Free estimates. Call for a quote.</strong>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>One-year warranty on parts &amp; labor on all jobs</span></div>
+          <div class="btns">
+            <a class="btn btn-red js-book" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Book Online</a>
+            <a class="btn btn-dark" href="tel:+12036423856"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call (203) 642-3856</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="photo" style="aspect-ratio:960/440"><span class="tag">All-Terrain &amp; Seasonal Fitments</span><img src="images/owner.jpg" alt="R&S owner next to a truck with new chrome wheels and tires"></div>
+
+    <div class="tire-grid">
+      <div class="feature">
+        <div class="tile-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+        <div><h3>Tire sales and installation</h3><div class="sub">New tires and wheel sets, including winter tires</div>
+          <p>Mounting, high-speed balancing and TPMS service, with new and quality used options for every budget.</p></div>
+      </div>
+      <div class="feature">
+        <div class="tile-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
+        <div><h3>Tire rotation</h3><div class="sub">Even wear, longer tread life</div>
+          <p>Regular tire rotation patterns to ensure even tread wear and extend the life of your tires.</p></div>
+      </div>
+      <div class="feature">
+        <div class="tile-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
+        <div><h3>Flat tire repair</h3><div class="sub">Patch &amp; plug, from $45</div>
+          <p>Fast, safe puncture repair that gets you back on the road the same day whenever possible.</p></div>
+      </div>
+      <div class="feature">
+        <div class="tile-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div>
+        <div><h3>Wheel alignment</h3><div class="sub">Straight steering, from $130</div>
+          <p>Computerized alignment to correct pulling and uneven wear after new tires or suspension work.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / GALLERY (dark) -->
+<section id="about" class="dark" style="border-top:1px solid var(--navy-line)">
+  <div class="wrap">
+    <span class="eyebrow dot">About R&amp;S</span>
+    <h2>Our Work in the Shop</h2>
+    <p class="lead">Real jobs completed on the lift in Norwalk: custom builds, suspension overhauls, engine work, and tire balancing.</p>
+    <div class="ba-wrap">
+      <div class="ba" id="ba" style="--pos:50%">
+        <img src="images/yellow-jeep-after.jpg" alt="Yellow Jeep Wrangler after: custom bumper, winch, LED light bar">
+        <img class="before" src="images/yellow-jeep-before.jpg" alt="Yellow Jeep Wrangler before, with stock bumper">
+        <span class="lbl b">Before</span><span class="lbl a">After</span>
+        <div class="divider"></div>
+        <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after">
+      </div>
+      <div class="ba-text">
+        <span class="eyebrow dot">Before &amp; After</span>
+        <h3>Yellow Jeep Wrangler: custom bumper and LED upgrade</h3>
+        <p>Drag the handle to compare the Jeep as it arrived with the finished job from our Norwalk shop.</p>
+        <ul>
+          <li>Heavy-duty steel front bumper with winch</li>
+          <li>Roof LED light bar and grille lighting</li>
+          <li>Recovery shackles and accent lights</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ba-wrap rev">
+      <div class="ba-text">
+        <span class="eyebrow dot">Before &amp; After</span>
+        <h3>White Jeep Wrangler: custom off-road equipment installation</h3>
+        <p>Drag the handle to see this Wrangler go from stock to trail-ready.</p>
+        <ul>
+          <li>Aggressive front bumper with red accent plates</li>
+          <li>Recovery shackles and LED light bar</li>
+          <li>Side steps for easy entry</li>
+        </ul>
+      </div>
+      <div class="ba tall" style="--pos:50%">
+        <img src="images/white-jeep-after.jpg" alt="White Jeep Wrangler after: custom bumper, light bar and side steps">
+        <img class="before" src="images/white-jeep-before.jpg" alt="White Jeep Wrangler before, stock">
+        <span class="lbl b">Before</span><span class="lbl a">After</span>
+        <div class="divider"></div>
+        <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the white Jeep before and after">
+      </div>
+    </div>
+
+    <div class="mosaic-head">
+      <div><h3>More from the shop floor</h3><p>Engine rebuilds, custom builds, brakes and tires — all done in Norwalk.</p></div>
+      <a class="btn btn-red js-book" href="#">Book Online</a>
+    </div>
+    <div class="mosaic">
+      <div class="m-tile"><img src="images/engine-swap.jpg" alt="Engine being removed from a Honda Civic" loading="lazy"><span>Engine swap</span></div>
+      <div class="m-tile"><img src="images/crankshaft.jpg" alt="Engine block with crankshaft installed" loading="lazy"><span>Crankshaft &amp; bearings</span></div>
+      <div class="m-tile"><img src="images/engine-block.jpg" alt="Engine block rebuild" loading="lazy"><span>Engine block rebuild</span></div>
+      <div class="m-tile"><img src="images/timing-gears.jpg" alt="Diesel timing gears" loading="lazy"><span>Timing gears</span></div>
+      <div class="m-tile"><img src="images/diesel-engine.jpg" alt="Dodge Ram diesel engine work" loading="lazy"><span>Diesel engine work</span></div>
+      <div class="m-tile"><img src="images/engine-bay.jpg" alt="Engine bay after service" loading="lazy"><span>Engine bay service</span></div>
+      <div class="m-tile"><img src="images/brake-hub.jpg" alt="Truck hub and brake service" loading="lazy"><span>Hub &amp; brake service</span></div>
+      <div class="m-tile"><img src="images/blue-f150.jpg" alt="Blue Ford F-150" loading="lazy"><span>Ford F-150</span></div>
+      <div class="m-tile"><img src="images/tire-balancing.jpg" alt="Wheel balancing" loading="lazy"><span>Tire balancing</span></div>
+      <div class="m-tile"><img src="images/shop-front.jpg" alt="R&S shop on School St" loading="lazy"><span>20 School St</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <span class="eyebrow dot">Norwalk, CT Workshop</span>
+    <h2 style="font-size:clamp(2.6rem,6vw,4rem)">Contact us</h2>
+    <p class="lead">Book online or call us for a free estimate and rapid appointment scheduling.</p>
+
+    <div class="contact-card">
+      <div class="contact-photo"><img src="images/owner.jpg" alt="R&S owner at the Norwalk shop"><span class="tag light">Norwalk, CT Bay</span></div>
+      <div class="contact-body">
+        <div>
+          <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Free Estimates • 1-Year Warranty</span>
+          <h2>Book your appointment</h2>
+          <p>Pick a time online in under a minute, or call the shop and we'll get you scheduled.</p>
+          <div class="btns">
+            <a class="btn btn-primary js-book" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Book Online</a>
+            <a class="btn btn-outline" href="tel:+12036423856"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call (203) 642-3856</a>
+          </div>
+        </div>
+        <div class="contact-list">
+          <div class="shop-photo"><img src="images/shop-exterior.jpg" alt="R&S General Auto Repair building at 20 School St, Norwalk"></div>
+          <div class="info-card">
+            <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+            <div><small>Address</small><strong>20 School St, Norwalk, CT 06851</strong>
+              <a href="https://maps.google.com/?q=20+School+St,+Norwalk,+CT+06851" target="_blank" rel="noopener" style="color:var(--maroon);font-weight:600">Get directions →</a></div>
+          </div>
+          <div class="info-card">
+            <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div style="flex:1"><small>Shop Hours</small>
+              <table class="hours"><tr><td>Mon – Fri</td><td>8:00 AM – 5:00 PM</td></tr><tr><td>Saturday</td><td>8:00 AM – 3:00 PM</td></tr><tr><td>Sunday</td><td>Closed</td></tr></table></div>
+          </div>
+        </div>
+      </div>
+      <div class="map"><iframe title="Map to R&S General Auto Repair" loading="lazy" src="https://maps.google.com/maps?q=20%20School%20St%2C%20Norwalk%2C%20CT%2006851&z=15&output=embed"></iframe></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-box"><img src="images/logo.png" alt="R&S General Auto Repair Tire Shop"></div>
+        <p style="margin-top:18px;max-width:340px">R&amp;S General Auto Repair and Tire Shop LLC. Honest repair, quality tires and guaranteed workmanship in Norwalk, CT.</p>
+      <p style="margin-top:14px"><a href="https://www.facebook.com/p/RS-General-Auto-Repair-LLC-100063790731230/" target="_blank" rel="noopener" style="color:#fff">Facebook</a> · <a href="https://www.yelp.com/biz/r-and-s-general-auto-repair-norwalk" target="_blank" rel="noopener" style="color:#fff">Yelp reviews</a></p>
+      </div>
+      <div><h4>Visit</h4><ul><li>20 School St</li><li>Norwalk, CT 06851</li><li><a href="tel:+12036423856">(203) 642-3856</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#tires">Tire Services</a></li><li><a href="#about">Our Work</a></li><li><a class="js-book" href="#">Book Online ↗</a></li></ul></div>
+    </div>
+    <div class="connect">
+      <h4>Connect</h4>
+      <div class="socials">
+        <a href="https://www.facebook.com/p/RS-General-Auto-Repair-LLC-100063790731230/" target="_blank" rel="noopener" aria-label="R&S General Auto Repair on Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+        <a href="https://www.yelp.com/biz/r-and-s-general-auto-repair-norwalk" target="_blank" rel="noopener" aria-label="R&S General Auto Repair on Yelp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="10.6" cy="6" rx="2.3" ry="5.2" transform="rotate(-10 10.6 6)"/><ellipse cx="5.3" cy="12.6" rx="3.3" ry="2" transform="rotate(12 5.3 12.6)"/><ellipse cx="18.6" cy="10.8" rx="3.3" ry="2" transform="rotate(-28 18.6 10.8)"/><ellipse cx="7.4" cy="18.8" rx="3.1" ry="1.9" transform="rotate(-42 7.4 18.8)"/><ellipse cx="16.6" cy="18.8" rx="1.9" ry="3.1" transform="rotate(-32 16.6 18.8)"/></svg></a>
+      </div>
+    </div>
+    <div class="legal"><span>© <span id="yr"></span> R&amp;S General Auto Repair and Tire Shop LLC</span><span>Mon–Fri 8–5 · Sat 8–3 · Sun Closed</span></div>
+  </div>
+</footer>
+
+<script>
+  // Every "Book" button goes to the Motoro booking page.
+  const BOOKING_URL = 'https://motoro.app/en/rs-general-auto-repair-and-tire-shop-llc-norwalk';
+  document.querySelectorAll('.js-book').forEach(a => { a.href = BOOKING_URL; a.target = '_blank'; a.rel = 'noopener'; });
+
+  // Before/after slider
+  document.querySelectorAll('.ba').forEach(ba =>
+    ba.querySelector('input').addEventListener('input', e => ba.style.setProperty('--pos', e.target.value + '%')));
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const open = () => document.body.classList.add('menu-open');
+  const close = () => document.body.classList.remove('menu-open');
+  document.getElementById('openMenu').onclick = open;
+  document.getElementById('closeMenu').onclick = close;
+  document.getElementById('scrim').onclick = close;
+  document.querySelectorAll('.drawer nav a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+</script>
+</body>
+</html>
